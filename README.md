@@ -8,7 +8,7 @@ A modern, header-only CSV writer class for C++23 that supports rolling files bas
 - **Dual Rolling Strategy**:
     - **Size-based Rolling**: Automatically creates a new log file when the current one reaches a configurable size limit
     - **Time-based Rolling**: Creates a new log file at regular intervals (e.g., daily rotation)
-	- **Row-based Rolling**: Creates a new log file when the table's row count reaches a configurable threshold (excludes the header row)
+    - **Row-based Rolling**: Creates a new log file when the table's row count reaches a configurable threshold (excludes the header row)
 - **Thread-Safe**: Uses `std::mutex` to ensure thread-safe logging operations
 - **Formatted Logging**: Uses `std::format` for type-safe string formatting
 - **Timestamped Rows**: Date and Time fields are added to the row by default
@@ -41,8 +41,8 @@ Simply include `csvlog/logger.hpp` in your project:
 int main() {
     csvlog::Logger writer;
     
-	int i = 1;
-	float f = 2.2f;
+    int i = 1;
+    float f = 2.2f;
 
     writer.write_row("{},{}", i, f);
     
