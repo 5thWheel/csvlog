@@ -2,15 +2,15 @@
 
 #include <chrono>
 #include <cstdio>
-#include <exception>
-#include <filesystem>
-#include <memory>
+//#include <exception>
+//#include <filesystem>
+//#include <memory>
 #include <mutex>
 #include <string>
 #include <type_traits>
 
 #define CSVLOG_VERSION_MAJOR 0
-#define CSVLOG_VERSION_MINOR 1
+#define CSVLOG_VERSION_MINOR 2
 #define CSVLOG_VERSION_PATCH 0
 
 #if defined(__cpp_lib_print)
@@ -30,7 +30,7 @@
 #define CSVLOG_FORMAT_STRING fmt::format_string
 #endif
 
-namespace fs = std::filesystem;
+//namespace fs = std::filesystem;
 
 #ifndef CSVLOG_BEGIN_NAMESPACE
 #define CSVLOG_BEGIN_NAMESPACE \
@@ -106,7 +106,7 @@ class Logger final {
             std::chrono::steady_clock::now() + config.roll_time_interval;
 
         if (!config.header_row.empty()) {
-            CSVLOG_PRINT_LINE(file, "{}", config.header_row);
+            CSVLOG_PRINT_LINE(file, "Date, Time, {}", config.header_row);
         }
     }
 
@@ -161,7 +161,7 @@ class Logger final {
         std::string message =
             CSVLOG_MAKE_STRING(fmt, std::forward<Args>(args)...);
 
-        CSVLOG_PRINT_LINE("{:%F, %T} {}", tp, message);
+        CSVLOG_PRINT_LINE(file, "{:%F, %T}, {}", tp, message);
 
         current_row_count++;
         
